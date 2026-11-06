@@ -11,7 +11,7 @@ precision, recall и F1. Если F1 падает ниже порога — ке
 python projects/02_regression/src/regression.py
 ```
 
-Отчёт: [docs/report.html](docs/report.html).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/02_regression/docs/report.html) · [файл в репозитории](docs/report.html).
 
 ## Кейсы
 

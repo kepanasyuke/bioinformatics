@@ -10,7 +10,7 @@ PCA считается честно — степенным методом на �
 python projects/05_rnaseq/src/rnaseq.py
 ```
 
-Отчёт: [docs/report.html](docs/report.html).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/05_rnaseq/docs/report.html) · [файл в репозитории](docs/report.html).
 
 ## Образцы
 

@@ -12,7 +12,7 @@ python projects/01_wgs_pipeline/src/wgs_pipeline.py          # dry-run + отч�
 python projects/01_wgs_pipeline/src/wgs_pipeline.py --run    # пометить как реальный прогон
 ```
 
-Отчёт: [docs/report.html](docs/report.html). Схема пайплайна: [pipeline/germline.cwl](pipeline/germline.cwl).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/01_wgs_pipeline/docs/report.html) · [файл в репозитории](docs/report.html). Схема пайплайна: [pipeline/germline.cwl](pipeline/germline.cwl).
 
 ## Шаги
 

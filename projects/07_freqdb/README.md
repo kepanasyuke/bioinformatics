@@ -11,7 +11,7 @@
 python projects/07_freqdb/src/freqdb.py
 ```
 
-Отчёт: [docs/report.html](docs/report.html). База: `data/freqs.sqlite` (пересоздаётся при запуске).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/07_freqdb/docs/report.html) · [файл в репозитории](docs/report.html). База: `data/freqs.sqlite` (пересоздаётся при запуске).
 
 ## Схема
 

@@ -6,15 +6,32 @@
 Все данные **синтетические** или публичные (GIAB, 1000 Genomes). Никаких реальных пациентов.
 Все отчёты генерируются скриптами, картинки не рисуются руками.
 
+## Живой сайт
+
+Всё, что генерируется, открывается в браузере без установки и сборки:
+
+| Что | Адрес |
+|---|---|
+| Главная страница со всеми отчётами | **https://kepanasyuke.github.io/bioinformatics/** |
+| Игра «DNA» | **https://kepanasyuke.github.io/bioinformatics/web/dna-game/** |
+| Отчёты по проектам | ссылки в колонке «Отчёт» ниже ведут сразу на живые страницы |
+
+Сайт собирается из этого же репозитория через GitHub Pages: ветка `master`, корень,
+`.nojekyll` отключает Jekyll, чтобы HTML отдавался как есть. Отдельной сборки нет —
+что запушили, то и открывается.
+
+Интерактивные Streamlit-дашборды (`web/dashboards/`) на Pages не живут: им нужен
+Python-сервер. Они запускаются локально одной командой и описаны в `requirements-optional.txt`.
+
 | № | Проект | Что показывает | Отчёт |
 |---|---|---|---|
-| 01 | [WGS-пайплайн](projects/01_wgs_pipeline) | CWL + Docker, воспроизводимость, версии инструментов | [report](projects/01_wgs_pipeline/docs/report.html) |
-| 02 | [Регрессионные тесты](projects/02_regression) | сравнение с эталоном, порог F1, падение CI при регрессии | [report](projects/02_regression/docs/report.html) |
-| 03 | [Тулчейн установки](projects/03_toolchain) | сборка из исходников, sha256, идемпотентность | [report](projects/03_toolchain/docs/report.html) |
-| 04 | [Бюджет кластера](projects/04_cluster_budget) | sacct, лимиты памяти и CPU, экономия core-hours | [report](projects/04_cluster_budget/docs/report.html) |
-| 05 | [RNA-Seq QC](projects/05_rnaseq) | fastp → STAR → counts, PCA, volcano | [report](projects/05_rnaseq/docs/report.html) |
-| 06 | [Починка legacy](projects/06_legacy) | 10 багов в чужом bash, PR + тест на каждый | [report](projects/06_legacy/docs/report.html) |
-| 07 | [База частот](projects/07_freqdb) | SQLite, аннотация VCF, фильтры по популяциям | [report](projects/07_freqdb/docs/report.html) |
+| 01 | [WGS-пайплайн](projects/01_wgs_pipeline) | CWL + Docker, воспроизводимость, версии инструментов | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/01_wgs_pipeline/docs/report.html) |
+| 02 | [Регрессионные тесты](projects/02_regression) | сравнение с эталоном, порог F1, падение CI при регрессии | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/02_regression/docs/report.html) |
+| 03 | [Тулчейн установки](projects/03_toolchain) | сборка из исходников, sha256, идемпотентность | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/03_toolchain/docs/report.html) |
+| 04 | [Бюджет кластера](projects/04_cluster_budget) | sacct, лимиты памяти и CPU, экономия core-hours | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/04_cluster_budget/docs/report.html) |
+| 05 | [RNA-Seq QC](projects/05_rnaseq) | fastp → STAR → counts, PCA, volcano | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/05_rnaseq/docs/report.html) |
+| 06 | [Починка legacy](projects/06_legacy) | 10 багов в чужом bash, PR + тест на каждый | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/06_legacy/docs/report.html) |
+| 07 | [База частот](projects/07_freqdb) | SQLite, аннотация VCF, фильтры по популяциям | [открыть](https://kepanasyuke.github.io/bioinformatics/projects/07_freqdb/docs/report.html) |
 
 ## Правила кода
 

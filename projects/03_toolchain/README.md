@@ -12,7 +12,7 @@ DRY_RUN=0 PREFIX=/opt/bio bash projects/03_toolchain/src/install_tools.sh
 python projects/03_toolchain/src/toolchain.py            # отчёт
 ```
 
-Отчёт: [docs/report.html](docs/report.html). Манифест: [data/manifest.tsv](data/manifest.tsv).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/03_toolchain/docs/report.html) · [файл в репозитории](docs/report.html). Манифест: [data/manifest.tsv](data/manifest.tsv).
 
 ## Манифест
 

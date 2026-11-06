@@ -10,7 +10,7 @@
 python projects/04_cluster_budget/src/budget.py
 ```
 
-Отчёт: [docs/report.html](docs/report.html).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/04_cluster_budget/docs/report.html) · [файл в репозитории](docs/report.html).
 
 ## Что меняется
 

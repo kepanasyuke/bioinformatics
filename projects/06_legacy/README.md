@@ -11,7 +11,7 @@ python projects/06_legacy/src/legacy.py
 bash -n projects/06_legacy/src/fixed_pipeline.sh
 ```
 
-Отчёт: [docs/report.html](docs/report.html). Список багов: [ISSUES.md](ISSUES.md).
+Отчёт: [онлайн на GitHub Pages](https://kepanasyuke.github.io/bioinformatics/projects/06_legacy/docs/report.html) · [файл в репозитории](docs/report.html). Список багов: [ISSUES.md](ISSUES.md).
 История изменений: [CHANGELOG.md](CHANGELOG.md).
 
 ## Файлы
