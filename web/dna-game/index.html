@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DNA · подбери комплементарное основание</title>
+<style>
+:root{--a:#38bdf8;--t:#f472b6;--g:#34d399;--c:#fbbf24;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(1200px 600px at 50% -10%,#12202e 0%,#0b1118 60%);color:#e6edf3;font:16px/1.5 Inter,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:28px}
+main{width:100%;max-width:760px}
+header{text-align:center;margin-bottom:18px}
+h1{margin:0;font-size:26px;letter-spacing:-.02em}
+.sub{margin:6px 0 0;color:#8aa0b4;font-size:14px}
+.hud{display:flex;align-items:center;gap:14px;font-size:13px;color:#8aa0b4;margin-bottom:16px}
+.dots{flex:1;display:flex;gap:6px}
+.dot{flex:1;height:8px;border-radius:6px;background:#1b2735;transition:background .25s ease}
+.dot.done{background:linear-gradient(90deg,#38bdf8,#34d399)}
+.dot.miss{background:#4a2026}
+.card{background:#111a24;border:1px solid #1d2a38;border-radius:18px;padding:26px;text-align:center}
+.prompt{margin:0 0 16px;color:#8aa0b4;font-size:14px}
+.strand{display:flex;justify-content:center;gap:12px;margin:8px 0 22px;font:600 44px/1 "JetBrains Mono",Consolas,monospace}
+.base{display:flex;align-items:center;justify-content:center;width:74px;height:74px;border-radius:16px;border:1px solid #22303f;background:#0f1620}
+.base.A{color:var(--a);border-color:#1e4d63}
+.base.T{color:var(--t);border-color:#5a2743}
+.base.G{color:var(--g);border-color:#1f5142}
+.base.C{color:var(--c);border-color:#5a4620}
+.base.ask{border-style:dashed;color:#3f5468}
+.bond{width:26px;height:2px;background:#22303f;align-self:center}
+.answers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+button{font:600 20px/1 "JetBrains Mono",Consolas,monospace;padding:18px 0;border-radius:12px;border:1px solid #22303f;background:#16202c;color:#e6edf3;cursor:pointer;transition:transform .08s ease,background .2s ease}
+button:hover{transform:translateY(-2px)}
+button:disabled{cursor:default;opacity:.65;transform:none}
+button.A{box-shadow:inset 0 -3px 0 var(--a)}
+button.T{box-shadow:inset 0 -3px 0 var(--t)}
+button.G{box-shadow:inset 0 -3px 0 var(--g)}
+button.C{box-shadow:inset 0 -3px 0 var(--c)}
+button.right{background:#0f2a22;border-color:#34d399}
+button.wrong{background:#2a1518;border-color:#f87171}
+.feedback{min-height:24px;margin-top:14px;font-size:14px;color:#8aa0b4}
+.feedback.ok{color:#34d399}
+.feedback.bad{color:#f87171}
+.result{text-align:center}
+.score{font-size:56px;font-weight:700;letter-spacing:-.03em;color:#38bdf8}
+.legend{display:flex;justify-content:center;gap:18px;margin:16px 0 0;font-size:13px;color:#8aa0b4}
+.legend b{font-family:"JetBrains Mono",Consolas,monospace}
+.facts{display:flex;justify-content:center;gap:22px;margin:20px 0 0;flex-wrap:wrap}
+.fact{background:#16202c;border:1px solid #22303f;border-radius:12px;padding:12px 18px;min-width:130px}
+.fact span{display:block;font-size:12px;color:#8aa0b4}
+.fact b{font-size:22px}
+button.again{margin-top:22px;width:100%;font-size:16px}
+.hidden{display:none}
+footer{margin-top:16px;text-align:center;color:#5f7488;font-size:12px}
+code{font-family:"JetBrains Mono",Consolas,monospace;color:#8aa0b4}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>DNA</h1>
+    <p class="sub">Подбери основание, комплементарное выделенному: A↔T, G↔C</p>
+  </header>
+
+  <div class="hud" id="hud">
+    <span id="round">раунд 1 / 10</span>
+    <div class="dots" id="dots"></div>
+    <span id="score">0 очков</span>
+  </div>
+
+  <section class="card" id="board">
+    <p class="prompt" id="prompt">Комплементарное основание к выделенному:</p>
+    <div class="strand">
+      <div class="base A" id="target">A</div>
+      <div class="bond"></div>
+      <div class="base ask" id="slot">?</div>
+    </div>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+  </section>
+
+  <section class="card result hidden" id="result">
+    <div class="score" id="final">0 / 10</div>
+    <p class="sub" id="verdict"></p>
+    <div class="facts">
+      <div class="fact"><span>точность</span><b id="accuracy">0%</b></div>
+      <div class="fact"><span>серия</span><b id="streak">0</b></div>
+      <div class="fact"><span>GC-состав цепи</span><b id="gc">0%</b></div>
+    </div>
+    <div class="legend">
+      <span><b style="color:var(--a)">A</b> аденин</span>
+      <span><b style="color:var(--t)">T</b> тимин</span>
+      <span><b style="color:var(--g)">G</b> гуанин</span>
+      <span><b style="color:var(--c)">C</b> цитозин</span>
+    </div>
+    <button class="again" id="again">Ещё раз</button>
+  </section>
+
+  <footer>Синтетическая последовательность · параметры: <code>?state=result&amp;score=9</code>, <code>?demo=1</code></footer>
+</main>
+
+<script>
+const PAIRS = {A: "T", T: "A", G: "C", C: "G"};
+const COLORS = {A: "#38bdf8", T: "#f472b6", G: "#34d399", C: "#fbbf24"};
+const BASES = ["A", "T", "G", "C"];
+const ROUNDS = 10;
+
+const params = new URLSearchParams(location.search);
+let seed = Number(params.get("seed") || 7);
+let demo = params.get("demo") === "1";
+let round = 0;
+let score = 0;
+let streak = 0;
+let bestStreak = 0;
+let targets = [];
+let results = [];
+let locked = false;
+
+function random() {
+  seed = (seed * 1103515245 + 12345) % 2147483648;
+  return seed / 2147483648;
+}
+
+function shuffle(items) {
+  const copy = items.slice();
+  for (let index = copy.length - 1; index > 0; index -= 1) {
+    const other = Math.floor(random() * (index + 1));
+    const swap = copy[index];
+    copy[index] = copy[other];
+    copy[other] = swap;
+  }
+  return copy;
+}
+
+function buildTargets() {
+  const chosen = [];
+  for (let index = 0; index < ROUNDS; index += 1) {
+    chosen.push(BASES[Math.floor(random() * BASES.length)]);
+  }
+  return chosen;
+}
+
+function gcShare() {
+  const gc = targets.filter((base) => base === "G" || base === "C").length;
+  return Math.round((gc / Math.max(targets.length, 1)) * 100);
+}
+
+function renderDots() {
+  const box = document.getElementById("dots");
+  box.innerHTML = "";
+  targets.forEach((_, index) => {
+    const dot = document.createElement("span");
+    const state = results[index];
+    dot.className = "dot" + (state === true ? " done" : state === false ? " miss" : "");
+    box.appendChild(dot);
+  });
+}
+
+function renderRound() {
+  const target = targets[round];
+  document.getElementById("target").textContent = target;
+  document.getElementById("target").className = "base " + target;
+  document.getElementById("slot").textContent = "?";
+  document.getElementById("round").textContent = `раунд ${round + 1} / ${ROUNDS}`;
+  document.getElementById("score").textContent = `${score} очков`;
+  renderDots();
+  renderAnswers();
+}
+
+function renderAnswers() {
+  const box = document.getElementById("answers");
+  box.innerHTML = "";
+  shuffle(BASES).forEach((base) => {
+    const button = document.createElement("button");
+    button.className = base;
+    button.textContent = base;
+    button.onclick = () => answer(base, button);
+    box.appendChild(button);
+  });
+}
+
+function answer(base, button) {
+  if (locked) { return; }
+  locked = true;
+  const target = targets[round];
+  const right = PAIRS[target];
+  const feedback = document.getElementById("feedback");
+  const buttons = document.querySelectorAll("#answers button");
+  buttons.forEach((item) => { item.disabled = true; });
+  document.querySelectorAll("#answers button")[0].focus();
+  button.classList.add(base === right ? "right" : "wrong");
+  if (base === right) {
+    score += 1;
+    streak += 1;
+    bestStreak = Math.max(bestStreak, streak);
+    feedback.className = "feedback ok";
+    feedback.textContent = `${target} ↔ ${right} — верно`;
+  } else {
+    streak = 0;
+    feedback.className = "feedback bad";
+    feedback.textContent = `${target} соединяется с ${right}, а не с ${base}`;
+  }
+  results[round] = base === right;
+  document.getElementById("slot").textContent = right;
+  document.getElementById("slot").className = "base " + right;
+  document.getElementById("score").textContent = `${score} очков`;
+  renderDots();
+  locked = false;
+  setTimeout(advance, demo ? 420 : 900);
+}
+
+function advance() {
+  round += 1;
+  document.getElementById("feedback").textContent = "";
+  document.getElementById("feedback").className = "feedback";
+  if (round < ROUNDS) {
+    renderRound();
+  } else {
+    finish();
+  }
+}
+
+function finish() {
+  document.getElementById("board").classList.add("hidden");
+  document.getElementById("hud").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("final").textContent = `${score} / ${ROUNDS}`;
+  document.getElementById("accuracy").textContent = `${Math.round((score / ROUNDS) * 100)}%`;
+  document.getElementById("streak").textContent = `${bestStreak}`;
+  document.getElementById("gc").textContent = `${gcShare()}%`;
+  const notes = ["Стоит повторить правило комплементарности: A↔T, G↔C.", "Неплохо, но ошибок ещё много.", "Крепкий результат: половина и больше верных.", "Почти идеально: одна ошибка на десять.", "Идеально: ни одной ошибки."];
+  const tone = score >= 10 ? 4 : score >= 9 ? 3 : score >= 7 ? 2 : score >= 5 ? 1 : 0;
+  document.getElementById("verdict").textContent = notes[tone];
+}
+
+function start() {
+  round = 0;
+  score = 0;
+  streak = 0;
+  bestStreak = 0;
+  targets = buildTargets();
+  results = [];
+  document.getElementById("board").classList.remove("hidden");
+  document.getElementById("hud").classList.remove("hidden");
+  document.getElementById("result").classList.add("hidden");
+  renderRound();
+  maybeDemo();
+}
+
+function maybeDemo() {
+  if (!demo) { return; }
+  const pick = PAIRS[targets[0]];
+  const schedule = () => {
+    const buttons = document.querySelectorAll("#answers button");
+    if (buttons.length === 0) { return; }
+    const target = targets[round];
+    const right = PAIRS[target];
+    const chance = random();
+    const choice = chance > 0.18 ? right : BASES.filter((base) => base !== right)[0];
+    const button = Array.from(buttons).find((item) => item.textContent === choice);
+    if (button) { button.click(); }
+  };
+  setInterval(schedule, 900);
+}
+
+function showResult() {
+  const given = Number(params.get("score") || 8);
+  document.getElementById("board").classList.add("hidden");
+  document.getElementById("hud").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+  document.getElementById("final").textContent = `${given} / ${ROUNDS}`;
+  document.getElementById("accuracy").textContent = `${given * 10}%`;
+  document.getElementById("streak").textContent = `${Math.max(given - 1, 0)}`;
+  document.getElementById("gc").textContent = `${gcShare()}%`;
+  document.getElementById("verdict").textContent = given >= 10 ? "Идеально: ни одной ошибки." : given >= 9 ? "Почти идеально: одна ошибка на десять." : "Неплохо, но ошибок ещё много.";
+}
+
+document.getElementById("again").onclick = start;
+
+targets = buildTargets();
+if (params.get("state") === "result") {
+  showResult();
+} else if (params.get("state") === "play") {
+  score = Number(params.get("score") || 6);
+  round = 3;
+  results = [true, true, false];
+  renderRound();
+} else {
+  start();
+}
+</script>
+</body>
+</html>

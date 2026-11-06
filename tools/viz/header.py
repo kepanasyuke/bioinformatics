@@ -66,12 +66,13 @@ def scene_build():
 
 
 def scene_budget():
-    before = [190, 150, 210, 230]
-    after = [96, 78, 110, 124]
-    bars = [grow_bar(70 + index * 62, 268, 40, before[index], art.THEME["bad"], 0.2 + index * 0.1) for index in range(4)]
-    bars = bars + [grow_bar(330 + index * 62, 268, 40, after[index], art.THEME["ok"], 1.0 + index * 0.1) for index in range(4)]
-    arrows = [art.text(628, 200, "−47%", 40, art.THEME["ok"], "middle", 700), art.text(628, 232, "core-hours за прогон", 13, art.THEME["muted"], "middle")]
-    return head("Проект 04 · Бюджет кластера", "профиль sacct · лимиты памяти и CPU · экономия без потери результата") + "".join(bars + arrows)
+    before = [110, 86, 124, 132]
+    after = [60, 47, 68, 72]
+    bars = [grow_bar(70 + index * 62, 274, 40, before[index], art.THEME["bad"], 0.2 + index * 0.1) for index in range(4)]
+    bars = bars + [grow_bar(330 + index * 62, 274, 40, after[index], art.THEME["ok"], 1.0 + index * 0.1) for index in range(4)]
+    captions = art.text(70, 130, "до", 12, art.THEME["muted"]) + art.text(330, 130, "после", 12, art.THEME["muted"])
+    arrows = [art.text(628, 212, "−47%", 40, art.THEME["ok"], "middle", 700), art.text(628, 244, "core-hours за прогон", 13, art.THEME["muted"], "middle")]
+    return head("Проект 04 · Бюджет кластера", "профиль sacct · лимиты памяти и CPU · экономия без потери результата") + captions + "".join(bars + arrows)
 
 
 def scene_rnaseq():
