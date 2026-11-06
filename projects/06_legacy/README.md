@@ -1,4 +1,4 @@
-<img src="../../docs/img/header-06-legacy.svg" alt="шапка проекта" width="100%">
+<img src="../../docs/img/header-06-legacy.gif" alt="шапка проекта" width="100%">
 
 # Проект 06. Починка чужого пайплайна
 

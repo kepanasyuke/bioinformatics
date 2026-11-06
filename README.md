@@ -52,9 +52,12 @@ python -m tools.viz.header
 
 ## Что смотреть в первую очередь
 
-[Игра «DNA»](web/dna-game) — подбери комплементарное основание: A↔T, G↔C.
-Десять раундов, счёт, разбор ошибки после каждого ответа. Один HTML-файл,
-работает без сервера и сборки.
+**[Играть: DNA — подбери комплементарное основание](https://kepanasyuke.github.io/bioinformatics/web/dna-game/)**
+
+Игра открывается прямо в браузере: A↔T, G↔C, десять раундов, счёт и GC-состав цепи.
+Тот же файл лежит в репозитории — `web/dna-game/index.html`, без сборки и зависимостей.
 
 <img src="web/dna-game/docs/game-demo.gif" alt="игра про ДНК" width="100%">
+
+Все семь отчётов собраны на одной странице: **[kepanasyuke.github.io/bioinformatics](https://kepanasyuke.github.io/bioinformatics/)**
 

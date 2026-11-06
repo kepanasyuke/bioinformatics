@@ -40,10 +40,10 @@ def shoot(url, target, budget, size="1200,760"):
 
 
 def demo_frames():
+    folder = tempfile.mkdtemp(prefix="frames-")
     paths = []
     for index, budget in enumerate(DEMO_FRAMES):
-        target = OUT / f"frame-{index + 1}.png"
-        paths.append(shoot(game_url(f"demo=1&seed=7"), target, budget))
+        paths.append(shoot(game_url("demo=1&seed=7"), Path(folder) / f"frame-{index + 1}.png", budget))
     return paths
 
 

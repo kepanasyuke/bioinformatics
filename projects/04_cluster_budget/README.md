@@ -1,4 +1,4 @@
-<img src="../../docs/img/header-04-budget.svg" alt="шапка проекта" width="100%">
+<img src="../../docs/img/header-04-budget.gif" alt="шапка проекта" width="100%">
 
 # Проект 04. Бюджет кластера: где сгорают core-hours
 

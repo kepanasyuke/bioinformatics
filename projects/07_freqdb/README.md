@@ -1,4 +1,4 @@
-<img src="../../docs/img/header-07-freqdb.svg" alt="шапка проекта" width="100%">
+<img src="../../docs/img/header-07-freqdb.gif" alt="шапка проекта" width="100%">
 
 # Проект 07. База популяционных частот
 

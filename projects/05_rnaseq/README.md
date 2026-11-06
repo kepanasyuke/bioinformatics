@@ -1,4 +1,4 @@
-<img src="../../docs/img/header-05-rnaseq.svg" alt="шапка проекта" width="100%">
+<img src="../../docs/img/header-05-rnaseq.gif" alt="шапка проекта" width="100%">
 
 # Проект 05. RNA-Seq: от fastq до QC-отчёта
 

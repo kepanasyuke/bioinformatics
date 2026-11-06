@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Портфолио биоинформатика · семь проектов</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(1200px 600px at 50% -10%,#12202e 0%,#0b1118 60%);color:#e6edf3;font:16px/1.6 Inter,"Segoe UI",sans-serif}
+main{max-width:1000px;margin:0 auto;padding:48px 22px 72px}
+header{margin-bottom:28px}
+h1{margin:0 0 8px;font-size:34px;letter-spacing:-.025em}
+.sub{margin:0;color:#8aa0b4;max-width:640px}
+.cta{display:inline-flex;align-items:center;gap:10px;margin-top:22px;padding:12px 20px;border-radius:12px;background:#0f3b52;border:1px solid #1b5b7d;color:#e6edf3;text-decoration:none;font-weight:600}
+.cta:hover{background:#134763}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:34px}
+a.card{display:block;padding:18px 20px;background:#111a24;border:1px solid #1d2a38;border-radius:14px;text-decoration:none;color:#e6edf3;transition:border-color .2s ease,transform .12s ease}
+a.card:hover{border-color:#2c4a63;transform:translateY(-2px)}
+.card b{display:block;font-size:16px;margin-bottom:4px}
+.card span{color:#8aa0b4;font-size:13.5px}
+.tag{display:inline-block;margin-bottom:10px;padding:2px 9px;border-radius:20px;background:#16202c;border:1px solid #22303f;color:#38bdf8;font-size:11.5px;font-weight:600}
+footer{margin-top:40px;color:#5f7488;font-size:12.5px;border-top:1px solid #1d2a38;padding-top:16px}
+a{color:#38bdf8}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Портфолио биоинформатика</h1>
+    <p class="sub">Семь проектов под задачи отдела: пайплайны и их поддержка, регрессионные тесты,
+    воспроизводимость, экономия ресурсов кластера и техническая документация.</p>
+    <a class="cta" href="web/dna-game/">Играть: DNA — подбери комплементарное основание →</a>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="projects/01_wgs_pipeline/docs/report.html"><span class="tag">01</span><b>WGS-пайплайн</b><span>CWL + Docker, пять шагов, зафиксированные версии</span></a>
+    <a class="card" href="projects/02_regression/docs/report.html"><span class="tag">02</span><b>Регрессионные тесты</b><span>TP/FP/FN, F1 и порог, который валит сборку</span></a>
+    <a class="card" href="projects/03_toolchain/docs/report.html"><span class="tag">03</span><b>Тулчейн установки</b><span>сборка из исходников, sha256, порядок зависимостей</span></a>
+    <a class="card" href="projects/04_cluster_budget/docs/report.html"><span class="tag">04</span><b>Бюджет кластера</b><span>sacct, лимиты памяти и CPU, экономия core-hours</span></a>
+    <a class="card" href="projects/05_rnaseq/docs/report.html"><span class="tag">05</span><b>RNA-Seq QC</b><span>проверка чтений, PCA, volcano, тепловая карта</span></a>
+    <a class="card" href="projects/06_legacy/docs/report.html"><span class="tag">06</span><b>Починка legacy</b><span>10 багов в чужом bash, issue → PR → тест</span></a>
+    <a class="card" href="projects/07_freqdb/docs/report.html"><span class="tag">07</span><b>База частот</b><span>SQLite, аннотация VCF, фильтры по округам</span></a>
+    <a class="card" href="https://github.com/kepanasyuke/bioinformatics"><span class="tag">code</span><b>Исходники</b><span>линтер стиля, тесты, сборка отчётов одной командой</span></a>
+  </div>
+
+  <footer>Данные в отчётах синтетические, это подписано на каждой странице. Правила кода: один выход из функции,
+  без continue, вложенность не глубже трёх.</footer>
+</main>
+</body>
+</html>

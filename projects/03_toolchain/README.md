@@ -1,4 +1,4 @@
-<img src="../../docs/img/header-03-toolchain.svg" alt="шапка проекта" width="100%">
+<img src="../../docs/img/header-03-toolchain.gif" alt="шапка проекта" width="100%">
 
 # Проект 03. Тулчейн установки и компиляции
 

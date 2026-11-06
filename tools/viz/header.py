@@ -16,7 +16,8 @@ TITLE_X, TITLE_Y = 40, 54
 
 def fade_box(x, y, width, height, color, begin, radius=8):
     return (
-        f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="{radius}" fill="{color}" opacity="0">'
+        f'<rect x="{x}" y="{y}" width="{width}" height="{height}" rx="{radius}" fill="{color}" '
+        f'stroke="{art.THEME["grid"]}" stroke-width="1.5" opacity="0">'
         f'<animate attributeName="opacity" from="0" to="1" begin="{begin}s" dur="0.55s" fill="freeze"/></rect>'
     )
 
@@ -45,7 +46,7 @@ def head(title, tag):
 
 def scene_pipeline():
     names = ["fastp", "bwa-mem2", "markdup", "haplotype", "фильтр"]
-    boxes = [fade_box(40 + index * 220, 150, 190, 70, art.THEME["panel"], 0.2 + index * 0.45) for index, name in enumerate(names)]
+    boxes = [fade_box(40 + index * 220, 150, 190, 70, "#1b2a3a", 0.2 + index * 0.45) for index, name in enumerate(names)]
     labels = [art.text(135 + index * 220, 190, name, 15, art.THEME["accent"], "middle", 600) for index, name in enumerate(names)]
     arrows = [art.line(230 + index * 220, 185, 262 + index * 220, 185, art.THEME["grid"], 2) for index in range(len(names) - 1)]
     marker = fade_box(1120, 250, 40, 10, art.THEME["ok"], 2.7, 4)
