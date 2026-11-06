@@ -1,0 +1,36 @@
+image: python:3.12-slim
+
+stages:
+  - lint
+  - test
+  - build
+
+style:
+  stage: lint
+  script:
+    - python tools/check_style.py .
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+tests:
+  stage: test
+  script:
+    - python tools/run_tests.py
+
+reports:
+  stage: build
+  script:
+    - python projects/01_wgs_pipeline/src/wgs_pipeline.py
+    - python projects/02_regression/src/regression.py
+    - python projects/03_toolchain/src/toolchain.py
+    - python projects/04_cluster_budget/src/budget.py
+    - python projects/05_rnaseq/src/rnaseq.py
+    - python projects/06_legacy/src/legacy.py
+    - python projects/07_freqdb/src/freqdb.py
+    - python -m tools.viz.header
+  artifacts:
+    paths:
+      - projects/*/docs/report.html
+      - docs/img/
+    expire_in: 1 week

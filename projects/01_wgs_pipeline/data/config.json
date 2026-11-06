@@ -1,0 +1,12 @@
+{
+  "reference": "data/ref/GRCh38_synthetic.fa",
+  "outdir": "results/SYNTH_001",
+  "threads": 16,
+  "sample": "SYNTH_001",
+  "images": {
+    "fastp": "quay.io/biocontainers/fastp:0.23.4--h5f740d0_0",
+    "bwa": "quay.io/biocontainers/bwa-mem2:2.2.1--hd03093a_4",
+    "gatk": "broadinstitute/gatk:4.6.0.0",
+    "bcftools": "quay.io/biocontainers/bcftools:1.20--h8b25389_0"
+  }
+}

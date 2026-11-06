@@ -1,0 +1,7 @@
+name	version	kind	sha256	deps
+htslib	1.20	autotools	6c2b1a0d1f3f5b8f0d6f0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e	-
+samtools	1.20	autotools	8f1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c	htslib
+bcftools	1.20	autotools	1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2	htslib
+bwa-mem2	2.2.1	autotools	3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4	-
+picard	3.3.0	jar	5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f	samtools
+gatk	4.6.0.0	jar	7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b	picard

@@ -1,0 +1,13 @@
+##fileformat=VCFv4.2
+##source=regression-demo
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO
+chr1	1017	.	A	G	50	PASS	.
+chr1	2017	.	A	G	50	PASS	.
+chr1	3017	.	A	G	50	PASS	.
+chr1	4017	.	A	G	50	PASS	.
+chr1	5017	.	A	G	50	PASS	.
+chr1	6017	.	A	G	50	PASS	.
+chr1	7017	.	A	G	50	PASS	.
+chr1	8017	.	A	G	50	PASS	.
+chr1	9017	.	A	G	50	PASS	.
+chr1	10017	.	A	G	50	PASS	.
