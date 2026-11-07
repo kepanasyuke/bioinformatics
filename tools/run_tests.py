@@ -13,7 +13,8 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_files():
-    return sorted((ROOT / "projects").glob("*/tests/test_*.py"))
+    found = list((ROOT / "projects").glob("*/tests/test_*.py")) + list((ROOT / "tools" / "tests").glob("test_*.py"))
+    return sorted(found)
 
 
 def load_module(path):

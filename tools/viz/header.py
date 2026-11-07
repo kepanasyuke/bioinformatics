@@ -86,8 +86,9 @@ def scene_legacy():
     lines = ["while read sample; do", "  bwa mem -t 8 $REF $sample > out.sam", "  samtools sort out.sam > out.bam", "done < samples.txt", "echo done"]
     rows = [art.text(40, 150 + index * 24, item, 13, art.THEME["text"] if index < 3 else art.THEME["muted"]) for index, item in enumerate(lines)]
     strike = [art.line(34, 150 + index * 24 - 5, 420, 150 + index * 24 - 5, art.THEME["bad"], 2) for index in (1, 3)]
-    fixed = art.text(520, 160, "set -euo pipefail · уникальный tmp · проверка кода", 15, art.THEME["ok"], weight=600)
-    return head("Проект 06 · Починка legacy", "10 issues · PR с тестом на каждый баг · CHANGELOG") + "".join(rows + strike) + fixed
+    panel = fade_box(500, 150, 470, 44, "#132a24", 1.8, 10)
+    fixed = art.text(520, 178, "set -euo pipefail · уникальный tmp · проверка кода", 15, art.THEME["ok"], weight=600)
+    return head("Проект 06 · Починка legacy", "10 issues · PR с тестом на каждый баг · CHANGELOG") + "".join(rows + strike) + panel + fixed
 
 
 def scene_freqdb():

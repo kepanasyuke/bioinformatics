@@ -61,9 +61,9 @@ def circle(cx, cy, radius, fill, opacity=1.0):
 
 
 def svg(width, height, body, title="", animated=False):
-    namespace = "" if animated else ""
+    marker = ' class="animated"' if animated else ""
     return (
-        f'<svg xmlns="http://www.w3.org/2000/svg"{namespace} viewBox="0 0 {width} {height}" '
+        f'<svg xmlns="http://www.w3.org/2000/svg"{marker} viewBox="0 0 {width} {height}" '
         f'width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{esc(title)}">'
         f'<rect width="{width}" height="{height}" fill="{THEME["bg"]}" rx="10"/>{body}</svg>'
     )

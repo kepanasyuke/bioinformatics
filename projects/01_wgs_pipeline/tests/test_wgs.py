@@ -38,6 +38,10 @@ class StepsTest(unittest.TestCase):
     def test_mean_depth(self):
         self.assertEqual(wgs.mean_depth([10, 20, 30]), 20.0)
 
+    def test_collect_outputs_lists_steps(self):
+        names = wgs.collect_outputs(wgs.run_pipeline("S1"))
+        self.assertEqual(names, [step["name"] for step in wgs.STEPS])
+
 
 if __name__ == "__main__":
     unittest.main()

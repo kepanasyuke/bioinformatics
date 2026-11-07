@@ -2,7 +2,7 @@ PYTHON ?= python
 
 PROJECTS := 01_wgs_pipeline 02_regression 03_toolchain 04_cluster_budget 05_rnaseq 06_legacy 07_freqdb
 
-.PHONY: all lint test reports headers game clean
+.PHONY: all lint test coverage reports headers game clean
 
 all: lint test reports headers
 
@@ -11,6 +11,9 @@ lint:
 
 test:
 	$(PYTHON) tools/run_tests.py
+
+coverage:
+	$(PYTHON) tools/coverage.py
 
 reports:
 	$(PYTHON) projects/01_wgs_pipeline/src/wgs_pipeline.py

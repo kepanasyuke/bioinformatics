@@ -5,6 +5,8 @@
 как метод, подставив self.
 """
 
+from pathlib import Path
+
 
 def equal(function, *args, expected):
     return lambda self: self.assertEqual(function(*args), expected)
@@ -33,3 +35,10 @@ def contains(function, *args, needle):
 def attach(cls, prefix, rows):
     names = [setattr(cls, f"test_{prefix}_{index:03d}", row) for index, row in enumerate(rows)]
     return len(names)
+
+
+def keep_file(target, action):
+    original = Path(target).read_bytes() if Path(target).exists() else b""
+    result = action()
+    Path(target).write_bytes(original)
+    return result
