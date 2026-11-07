@@ -60,7 +60,7 @@ FIXED_LINES = [
 def parse_vcf_line(line):
     fields = line.rstrip("\n").split("\t")
     record = {}
-    if len(fields) >= 8:
+    if len(fields) >= 8 and not line.startswith("#") and fields[1].isdigit():
         record = {"chrom": fields[0], "pos": int(fields[1]), "ref": fields[3], "alt": fields[4], "filter": fields[6]}
     return record
 
@@ -97,10 +97,11 @@ def average(values):
 def compare_runs(before, after):
     minutes_before = average([row["minutes"] for row in before])
     minutes_after = average([row["minutes"] for row in after])
+    speedup = round((1 - minutes_after / minutes_before) * 100, 1) if minutes_before else 0.0
     return {
         "minutes_before": minutes_before,
         "minutes_after": minutes_after,
-        "speedup": round((1 - minutes_after / minutes_before) * 100, 1),
+        "speedup": speedup,
         "failed_before": sum(row["failed"] for row in before),
         "failed_after": sum(row["failed"] for row in after),
     }
