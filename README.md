@@ -60,8 +60,14 @@ python tools/run_tests.py
 (1600+ тестов, свежая таблица в [docs/coverage.md](docs/coverage.md)). Меряется
 стандартным модулем `trace`, без внешних пакетов: `tools/coverage.py` прогоняет
 весь набор под трассировщиком и сравнивает затронутые строки со списком инструкций
-из AST. Не входят в замер только два скрипта, которым нужен живой браузер
-(`tools/shoot_game.py`, `tools/headers_gif.py`), — они проверяются запуском, а не юнит-тестами.
+из AST. Не входят в замер только скрипты, которым нужен живой браузер
+(`tools/shoot_game.py`, `tools/shoot_coverage.py`, `tools/headers_gif.py`),
+они проверяются запуском, а не юнит-тестами.
+
+<img src="docs/img/coverage-top.png" alt="страница покрытия" width="100%">
+
+Страница покрытия: **[kepanasyuke.github.io/bioinformatics/docs/coverage.html](https://kepanasyuke.github.io/bioinformatics/docs/coverage.html)** —
+пересобирается командой `make coverage`, скриншоты снимает `python tools/shoot_coverage.py`.
 
 Табличные кейсы живут в `projects/*/tests/test_matrix.py`, ручные — в `test_<проект>.py`,
 тесты отчётов — в `test_report.py`, тесты инструментов — в `tools/tests/`.

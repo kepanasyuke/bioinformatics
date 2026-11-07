@@ -137,6 +137,21 @@ def line_chart(labels, groups, width=760, height=300, title="", value_fmt="{:.0f
     return svg(width, height, head + body, title)
 
 
+def hbar_row(label, value, index, left, top, width, row_height, peak, value_fmt):
+    y = top + index * row_height
+    bar_width = value / (peak or 1) * (width - left - 80)
+    name = text(left - 10, y + row_height - 12, label, 11, THEME["muted"], "end")
+    amount = text(left + bar_width + 8, y + row_height - 12, value_fmt.format(value), 11, THEME["text"])
+    return rect(left, y, bar_width, row_height - 8, THEME["accent"], 4) + name + amount
+
+
+def hbar_chart(labels, values, width=1000, row_height=26, title="", value_fmt="{:.0f}"):
+    left, top = 200, 44
+    peak = max(values + [1])
+    rows = [hbar_row(label, value, index, left, top, width, row_height, peak, value_fmt) for index, (label, value) in enumerate(zip(labels, values))]
+    return svg(width, top + len(values) * row_height + 16, text(16, 24, title, 13, THEME["text"], weight=600) + "".join(rows), title)
+
+
 def scatter_ranges(points):
     xs = [point["x"] for point in points]
     ys = [point["y"] for point in points]

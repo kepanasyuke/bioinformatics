@@ -81,6 +81,16 @@ class ChartsTest(unittest.TestCase):
         points = [{"x": 1, "y": 2, "group": "g1"}]
         self.assertIn("<circle", art.scatter(points))
 
+    def test_hbar_chart_rows(self):
+        chart = art.hbar_chart(["a", "bb"], [10, 20], title="t")
+        self.assertEqual(chart.count("<rect"), 3)
+
+    def test_hbar_chart_names(self):
+        self.assertIn("wgs_pipeline.py", art.hbar_chart(["wgs_pipeline.py"], [42], width=600))
+
+    def test_hbar_chart_zero_value(self):
+        self.assertIn("<svg", art.hbar_chart(["a"], [0]))
+
     def test_heatmap_cells(self):
         heat = art.heatmap(["r1", "r2"], ["c1"], [[0.0], [1.0]], title="t")
         self.assertGreaterEqual(heat.count("<rect"), 3)
